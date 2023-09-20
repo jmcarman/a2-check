@@ -1,4 +1,8 @@
 #!/bin/bash
+# Author: Jason Carman; jason.carman@senecacollege.ca
+# Date: March 14, 2023
+# Purpose: Generate a text file submission for Assignment 2
+# Usage: Run this on centos3, then copy the output file to your host.
 
 read -p "Please enter your userID: " user
 
