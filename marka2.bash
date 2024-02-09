@@ -1,8 +1,14 @@
 #!/bin/bash
-# Author: Jason Carman; jason.carman@senecacollege.ca
+# Author: Jason Carman; jason.carman@senecapolytechnic.ca
 # Date: March 14, 2023
+# Updated: Februrary 9, 2024
 # Purpose: Generate a text file submission for Assignment 2
-# Usage: Run this on centos3, then copy the output file to your host.
+# Usage: Run this on deb3, then copy the output file to your host.
+
+if [[ $(whoami) != "root" ]]; then
+  echo "You must be root to run this script. Please use sudo." 2> /dev/null
+  exit 1
+fi
 
 read -p "Please enter your userID: " user
 
@@ -12,7 +18,7 @@ Unique ID: $(echo $user | sha256sum)
 
 #####
 # Apache status:
-$(systemctl status httpd)
+$(systemctl status apache2)
 
 #####
 # Mariadb status:
@@ -32,8 +38,4 @@ $(iptables -L -vn --line-numbers)
 
 EOF
 
-cat << EOF
-
-a2output.txt has been created in your home directory.  Please submit it to the Assignment 2 folder on BlackBoard.
-
-EOF
+echo "a2output.txt has been created in your home directory.  Please submit it to the Assignment 2 folder on BlackBoard."
