@@ -1,20 +1,22 @@
 #!/bin/bash
 # Author: Jason Carman; jason.carman@senecapolytechnic.ca
 # Date: March 14, 2023
-# Updated: Februrary 9, 2024
+# Updated: Februrary 22, 2024
 # Purpose: Generate a text file submission for Assignment 2
-# Usage: Run this on deb3, then copy the output file to your host.
+# Usage: Run this on the Ubuntu VM you created in your Assignment 1, then copy the output file to your host.
 
 if [[ $(whoami) != "root" ]]; then
   echo "You must be root to run this script. Please use sudo." 2> /dev/null
   exit 1
 fi
 
-read -p "Please enter your userID: " user
+cat << EOF > /home/$USER/a2output.txt
+Username: $USER
+Unique ID: $(echo $USER | sha256sum)
 
-cat << EOF > /home/$user/a2output.txt
-Username: $user
-Unique ID: $(echo $user | sha256sum)
+#####
+# Current default target:
+$(systemctl get-default)
 
 #####
 # Apache status:
@@ -26,15 +28,15 @@ $(systemctl status mariadb)
 
 #####
 # Wordpress installed:
-$(ls -la /var/www/html/wordpress)
+$(ls -la /usr/share/wordpress)
 
 #####
 # Wordpress config:
-$(head -30 /var/www/html/wordpress/wp-config.php)
+$(head -10 /etc/wordpress/config-$USER-ubuntu.php)
 
 #####
-# Firewall configuration:
-$(iptables -L -vn --line-numbers)
+# IP Address:
+$(ip a)
 
 EOF
 
