@@ -19,6 +19,10 @@ Unique ID: $(echo $USER | sha256sum)
 $(systemctl get-default)
 
 #####
+# IP Address:
+$(ip a)
+
+#####
 # Apache status:
 $(systemctl status apache2)
 
@@ -33,11 +37,6 @@ $(ls -la /usr/share/wordpress)
 #####
 # Wordpress config:
 $(head -10 /etc/wordpress/config-$USER-ubuntu.php)
-
-#####
-# IP Address:
-$(ip a)
-
 EOF
 
 echo "a2output.txt has been created in your home directory.  Please submit it to the Assignment 2 folder on BlackBoard."
