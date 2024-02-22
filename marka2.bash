@@ -4,6 +4,9 @@
 # Updated: Februrary 22, 2024
 # Purpose: Generate a text file submission for Assignment 2
 # Usage: Run this on the Ubuntu VM you created in your Assignment 1, then copy the output file to your host.
+#
+
+clear
 
 if [[ $(whoami) != "root" ]]; then
   echo "You must be root to run this script. Please use sudo." 2> /dev/null
