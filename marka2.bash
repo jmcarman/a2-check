@@ -41,7 +41,7 @@ $(ls -la /usr/share/wordpress)
 
 #####
 # Wordpress config:
-$(head -10 /etc/wordpress/config-$USER-ubuntu.php)
+$(head -10 /etc/wordpress/config-$user-ubuntu.php)
 EOF
 
 echo "a2output.txt has been created in your home directory.  Please submit it to the Assignment 2 folder on BlackBoard."
