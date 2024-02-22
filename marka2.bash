@@ -13,9 +13,11 @@ if [[ $(whoami) != "root" ]]; then
   exit 1
 fi
 
-cat << EOF > /home/$USER/a2output.txt
-Username: $USER
-Unique ID: $(echo $USER | sha256sum)
+read -p "Please enter your username: " user
+
+cat << EOF > /home/$user/a2output.txt
+Username: $user
+Unique ID: $(echo $user | sha256sum)
 
 #####
 # Current default target:
