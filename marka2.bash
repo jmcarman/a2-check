@@ -28,6 +28,10 @@ $(systemctl get-default)
 $(ip a)
 
 #####
+# nftables configuration:
+$(sudo nft list ruleset)
+
+#####
 # Apache status:
 $(systemctl status apache2)
 
